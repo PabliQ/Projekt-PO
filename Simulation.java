@@ -1,41 +1,44 @@
-import java.util.*
+import java.lang.reflect.Array;
+import java.util.*;
+import java.lang.String;
 
 public class Simulation {
-    Unit[] alliedUnits = new Unit[];
-    Unit[] enemyUnits = new Unit[];
-    String alliedRace = new String;
-    String enemyRace = new String;
 
-    public void start(){
+    static ArrayList<Unit> alliedUnits = new ArrayList<>();
+    static ArrayList<Unit> enemyUnits = new ArrayList<>();
+    public static String alliedRace = new String();
+    public static String enemyRace = new String();
+    static String[] races = new String[]{"Human", "Dwarf", "Elf", "Orc"};
+    public Gold allyGold = new Gold();
+    public Gold enemyGold = new Gold();
+    Random generator = new Random();
+    public Scanner scan = new Scanner(System.in);
 
+
+    public void chooseRace() {
+        int wybor;
+        System.out.println("Wybierz rase:" +
+                "1. Human" +
+                "2. Dwarf" +
+                "3. Elf" +
+                "4. Orc");{
+            wybor = scan.nextInt();
+            alliedRace=races[wybor];
+        }
     }
 
-    public void chooseRace(){
 
-    }
-
-    public void chooseEnemyRace(){
-
-
-    }
-
-    public void rollEnemyRace(){
+    public void rollEnemyRace() {
+        int losowa;
+        losowa= generator.nextInt(4);
+        enemyRace=races[losowa];
+        }
 
 
-    }
-
-    public void chooseAmountOfGold(int goldAmount){
-        Scanner scan = new Scanner(System.in)
+    public void chooseAmountOfGold(int goldAmount) {
         System.out.println("Podaj ilość złota dostępną do wydania na jednostki: ");
         goldAmount = scan.nextInt();
-        Gold allyGold = new Gold;
-        Gold enemyGold = new Gold;
-        enemyGold.gold=goldAmount;
-        allyGold.gold=goldAmount;
-    }
-
-    public static void main(String[] args) {
-
-
+        enemyGold.gold = goldAmount;
+        allyGold.gold = goldAmount;
     }
 }
