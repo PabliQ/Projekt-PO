@@ -7,7 +7,7 @@ public class Gold {
     private Scanner scan = new Scanner(System.in);
     Random generator = new Random();
 
-    public void chooseNumberOfUnits(int lvl){
+    public int chooseNumberOfUnits(int lvl){
         int price=0;
         if (lvl == 1) {
             price = 40;
@@ -26,6 +26,7 @@ public class Gold {
                     "Podaj mniejszą liczbę jednostek");
             ilosc = scan.nextInt();
         }
+        return ilosc;
     }
 
     public void buyUnits(int lvl,int number,ArrayList<Unit> army ,String race) {
@@ -40,73 +41,71 @@ public class Gold {
             price = 100;
         }
 
-
         gold -= number * price;
         switch (race) {
             case "Elf":
                 if(army==Simulation.alliedUnits){
-                    for (int i = 0; i < number; i++) {
-                        army.add(new Elf(lvl,1+i*2));
+                    for (int i = 1; i <= number; i++) {
+                        army.add(new Elf(lvl,2*i));
                         }
                 }
                 else{
-                    for(int i=0; i < number; i++){
-                    army.add(new Elf(lvl, 2*i));}
+                    for(int i=1; i <= number; i++){
+                    army.add(new Elf(lvl, 2*i-1));}
                 }
                 break;
             case "Dwarf":
                 if(army==Simulation.alliedUnits){
-                    for (int i = 0; i < number; i++) {
-                        army.add(new Dwarf(lvl,1+i*2));
+                    for (int i = 1; i <= number; i++) {
+                        army.add(new Dwarf(lvl,i*2));
                     }
                 }
                 else{
-                    for(int i=0; i < number; i++){
-                        army.add(new Dwarf(lvl, 2*i));}
+                    for(int i=1; i <= number; i++){
+                        army.add(new Dwarf(lvl, 2*i-1));}
                 }
                 break;
             case "Human":
                 if(army==Simulation.alliedUnits){
-                    for (int i = 0; i < number; i++) {
-                        army.add(new Human(lvl,1+i*2));
+                    for (int i = 1; i <= number; i++) {
+                        army.add(new Human(lvl,i*2));
                     }
                 }
                 else{
-                    for(int i=0; i < number; i++){
-                        army.add(new Human(lvl, 2*i));}
+                    for(int i=1; i <= number; i++){
+                        army.add(new Human(lvl, 2*i-1));}
                 }
                 break;
             case "Orc":
                 if(army==Simulation.alliedUnits){
-                    for (int i = 0; i < number; i++) {
-                        army.add(new Orc(lvl,1+i*2));
+                    for (int i = 1; i <= number; i++) {
+                        army.add(new Orc(lvl,i*2));
                     }
                 }
                 else{
-                    for(int i=0; i < number; i++){
-                        army.add(new Orc(lvl, 2*i));}
+                    for(int i=1; i <= number; i++){
+                        army.add(new Orc(lvl, 2*i-1));}
                 }
                 break;
         }
     }
-    public void chooseUnitsRandomly (int zloto) {
+    public void chooseEnemyUnitsRandomly () {
        int maksIlosc;
        for(int i=1;i<=3;i++){
            if(i==1){
-               maksIlosc=(zloto-(zloto%40))/40;
+               maksIlosc=(gold-(gold%40))/40;
                int ilosc = generator.nextInt(maksIlosc);
                buyUnits(i,ilosc,Simulation.enemyUnits,Simulation.enemyRace);
            }
            if(i==2){
-               maksIlosc=(zloto-(zloto%65))/65;
+               maksIlosc=(gold-(gold%65))/65;
                int ilosc = generator.nextInt(maksIlosc);
                buyUnits(i,ilosc,Simulation.enemyUnits,Simulation.enemyRace);
            }
            else{
-               maksIlosc=(zloto-(zloto%100))/100;
+               maksIlosc=(gold-(gold%100))/100;
                buyUnits(i,maksIlosc,Simulation.enemyUnits,Simulation.enemyRace);
            }
        }
     }
 }
-

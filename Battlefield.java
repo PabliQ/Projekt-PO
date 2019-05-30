@@ -1,18 +1,64 @@
+import java.io.Console;
+
 public class Battlefield {
-     int[][] board;
+
+	int field[][];
+	
+	public Battlefield(int size){
+		this.field = new int[size][size]; // jezeli pole w tablicy wynosi 0 to reprezuntuje puste miejsce
+	}
+	
+	public Point getLocation (int size ,int id) {
+		Point point = new Point();
+		int temp = 0;
+		for (int i = 0; i<size ; i++)
+		{
+			for (int j = 0; j<size; j++)
+			{
+				if (this.field[i][j] == id) 
+				{
+					point.x = i;
+					point.y = j;
+					temp = j;
+					break;
+				}
+			}
+			if (this.field[i][temp] == id) break;
+		}
+		return point;
+	}
+	
+	public int getID (Point point ) {
+		return this.field[point.x][point.y];
+	}
+
+	public void placeAllyUnits(){
+		for(int i=0; i<Simulation.alliedUnits.size();i++){
+			int j=14;
+			field[j][i%15]=Simulation.alliedUnits.get(i).id;
+			if(i%15==14){
+				j--;
+			}
+	}}
 
 
-     Battlefield(int column, int verse)
-     {
-          this.board = new int[column][verse];
-     }
-
-
-     public int getID(){
-       return 0;
-     }
-
-     public void show(){
-
-     }
+	public void placeEnemyUnits(){
+		for(int i=0; i<Simulation.enemyUnits.size();i++){
+			int j=0;
+			field[j][i%15]=Simulation.enemyUnits.get(i).id;
+			if(i%15==14)
+				j++;
+		}
+	}
+	
+	
+	
+	public void show (int size) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				System.out.print(this.field[i][j] + " "); 
+			}
+			System.out.println();
+		}
+	}
 }

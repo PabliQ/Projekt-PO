@@ -11,17 +11,18 @@ public class Simulation {
     static String[] races = new String[]{"Human", "Dwarf", "Elf", "Orc"};
     public Gold allyGold = new Gold();
     public Gold enemyGold = new Gold();
+    public Battlefield battlefield = new Battlefield(30);
     Random generator = new Random();
     public Scanner scan = new Scanner(System.in);
 
 
     public void chooseRace() {
         int wybor;
-        System.out.println("Wybierz rase:" +
-                "1. Human" +
-                "2. Dwarf" +
-                "3. Elf" +
-                "4. Orc");{
+        System.out.println("Wybierz rase: " +
+                "1.Human " +
+                "2.Dwarf " +
+                "3.Elf " +
+                "4.Orc ");{
             wybor = scan.nextInt();
             alliedRace=races[wybor];
         }
@@ -35,9 +36,9 @@ public class Simulation {
         }
 
 
-    public void chooseAmountOfGold(int goldAmount) {
+    public void chooseAmountOfGold() {
         System.out.println("Podaj ilość złota dostępną do wydania na jednostki: ");
-        goldAmount = scan.nextInt();
+        int goldAmount = scan.nextInt();
         enemyGold.gold = goldAmount;
         allyGold.gold = goldAmount;
     }
