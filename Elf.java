@@ -60,10 +60,10 @@ public class Elf extends Unit {
     }
 
     @Override
-    public boolean attack(Simulation sim, Battlefield field, int fieldSize) {
+    public void attack(Simulation sim, Battlefield field, int fieldSize, boolean done) {
         Point myLocation = field.getLocation(fieldSize, this.id);
         Point enemyLocation = new Point();
-        boolean done = false;
+        done = false;
         for (int tempX = -15; tempX <= 15; tempX++) {
             for (int tempY = -15; tempY <= 15; tempY++) {
                 if (tempX != 0 && tempY != 0 && myLocation.x + tempX >= 0 && myLocation.x + tempX < fieldSize && myLocation.y + tempY >= 0 && myLocation.y + tempY < fieldSize) {
@@ -74,11 +74,11 @@ public class Elf extends Unit {
                         if ((field.getID(myLocation) - enemyID) % 2 != 0) {
                             if (this.id % 2 == 0) {
                                 int i = 0;
-                                for (Unit tempUnit : sim.enemyUnits) {
-                                    if (tempUnit.id == enemyID) {
+                                for (int j = 0; j < sim.enemyUnits.size(); j++) {
+                                    if (sim.enemyUnits.get(j).id  == enemyID) {
+                                    	i = j;
                                         break;
                                     }
-                                    i++;
                                 }
                                 sim.enemyUnits.get(i).hP -= (this.atk - sim.enemyUnits.get(i).def);
                                 done = true;
@@ -86,7 +86,8 @@ public class Elf extends Unit {
                                     sim.enemyUnits.remove(i);
                                     field.field[enemyLocation.x][enemyLocation.y] = 0;
                                 }
-                            } else if (this.id % 2 != 0) {
+                            }
+                            else if (this.id % 2 != 0) {
                                 int i = 0;
                                 for (Unit tempUnit : sim.alliedUnits) {
                                     if (tempUnit.id == enemyID) {
@@ -108,6 +109,5 @@ public class Elf extends Unit {
             }
             if (done) break;
         }
-        return done;
     }
 }

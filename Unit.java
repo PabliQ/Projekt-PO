@@ -8,6 +8,5 @@ public abstract class Unit {
     protected int price;
     protected int id;
 
-    public abstract boolean attack(Simulation sim, Battlefield field, int fieldSize); //za Battlefield field wstawiac sim.battlefield, za fieldsize 50
-    public abstract void move(Battlefield field, int fieldsize);
-}
+    public abstract void attack(Simulation sim, Battlefield field, int fieldSize, boolean done); 
+    public abstract void move(Battlefield field, int fieldsize);}

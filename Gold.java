@@ -46,65 +46,65 @@ public class Gold {
             case "Elf":
                 if(army==Simulation.alliedUnits){
                     for (int i = 1; i <= number; i++) {
-                        army.add(new Elf(lvl,2*i));
+                        army.add(new Elf(lvl,2*(1+army.size())));
                         }
                 }
                 else{
                     for(int i=1; i <= number; i++){
-                    army.add(new Elf(lvl, 2*i-1));}
+                    army.add(new Elf(lvl, 2*(1+army.size())-1));}
                 }
                 break;
             case "Dwarf":
                 if(army==Simulation.alliedUnits){
                     for (int i = 1; i <= number; i++) {
-                        army.add(new Dwarf(lvl,i*2));
+                        army.add(new Dwarf(lvl,(1+army.size())*2));
                     }
                 }
                 else{
                     for(int i=1; i <= number; i++){
-                        army.add(new Dwarf(lvl, 2*i-1));}
+                        army.add(new Dwarf(lvl, (2*(1+army.size())-1)));}
                 }
                 break;
             case "Human":
                 if(army==Simulation.alliedUnits){
                     for (int i = 1; i <= number; i++) {
-                        army.add(new Human(lvl,i*2));
+                        army.add(new Human(lvl,(1+army.size())*2));
                     }
                 }
                 else{
                     for(int i=1; i <= number; i++){
-                        army.add(new Human(lvl, 2*i-1));}
+                        army.add(new Human(lvl, 2*(1+army.size())-1));}
                 }
                 break;
             case "Orc":
                 if(army==Simulation.alliedUnits){
                     for (int i = 1; i <= number; i++) {
-                        army.add(new Orc(lvl,i*2));
+                        army.add(new Orc(lvl,(army.size()+1)*2));
                     }
                 }
                 else{
                     for(int i=1; i <= number; i++){
-                        army.add(new Orc(lvl, 2*i-1));}
+                        army.add(new Orc(lvl, 2*(1+army.size())-1));}
                 }
                 break;
         }
     }
-    public void chooseEnemyUnitsRandomly () {
+    public void chooseEnemyUnitsRandomly (Simulation sim) {
        int maksIlosc;
        for(int i=1;i<=3;i++){
            if(i==1){
                maksIlosc=(gold-(gold%40))/40;
                int ilosc = generator.nextInt(maksIlosc);
-               buyUnits(i,ilosc,Simulation.enemyUnits,Simulation.enemyRace);
+               buyUnits(i,ilosc,sim.enemyUnits,Simulation.enemyRace);
            }
            if(i==2){
                maksIlosc=(gold-(gold%65))/65;
                int ilosc = generator.nextInt(maksIlosc);
-               buyUnits(i,ilosc,Simulation.enemyUnits,Simulation.enemyRace);
+               buyUnits(i,ilosc,sim.enemyUnits,Simulation.enemyRace);
            }
            else{
                maksIlosc=(gold-(gold%100))/100;
-               buyUnits(i,maksIlosc,Simulation.enemyUnits,Simulation.enemyRace);
+               buyUnits(i,maksIlosc,sim.enemyUnits,Simulation.enemyRace);
            }
        }
     }

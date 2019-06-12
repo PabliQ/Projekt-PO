@@ -5,13 +5,13 @@ import java.lang.String;
 public class Simulation {
 
     static ArrayList<Unit> alliedUnits = new ArrayList<>();
-    static ArrayList<Unit> enemyUnits = new ArrayList<>();
+    ArrayList<Unit> enemyUnits = new ArrayList<>();
     public static String alliedRace = new String();
     public static String enemyRace = new String();
     static String[] races = new String[]{"Human", "Dwarf", "Elf", "Orc"};
-    public Gold allyGold = new Gold();
-    public Gold enemyGold = new Gold();
-    public Battlefield battlefield = new Battlefield(30);
+    Gold allyGold = new Gold();
+    Gold enemyGold = new Gold();
+    public Battlefield battlefield = new Battlefield(15);
     Random generator = new Random();
     public Scanner scan = new Scanner(System.in);
 
@@ -23,7 +23,7 @@ public class Simulation {
                 "2.Dwarf " +
                 "3.Elf " +
                 "4.Orc ");{
-            wybor = scan.nextInt();
+            wybor = scan.nextInt() - 1;
             alliedRace=races[wybor];
         }
     }

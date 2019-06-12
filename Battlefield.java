@@ -5,7 +5,8 @@ public class Battlefield {
 	int field[][];
 	
 	public Battlefield(int size){
-		this.field = new int[size][size]; // jezeli pole w tablicy wynosi 0 to reprezuntuje puste miejsce
+		this.field = new int[size][size]; 
+		// jezeli pole w tablicy wynosi 0 to reprezuntuje puste miejsce
 	}
 	
 	public Point getLocation (int size ,int id) {
@@ -33,8 +34,8 @@ public class Battlefield {
 	}
 
 	public void placeAllyUnits(){
+		int j = 14;
 		for(int i=0; i<Simulation.alliedUnits.size();i++){
-			int j=14;
 			field[j][i%15]=Simulation.alliedUnits.get(i).id;
 			if(i%15==14){
 				j--;
@@ -42,10 +43,10 @@ public class Battlefield {
 	}}
 
 
-	public void placeEnemyUnits(){
-		for(int i=0; i<Simulation.enemyUnits.size();i++){
-			int j=0;
-			field[j][i%15]=Simulation.enemyUnits.get(i).id;
+	public void placeEnemyUnits(Simulation sim){
+		int j = 0;
+		for(int i=0; i<sim.enemyUnits.size();i++){
+			field[j][i%15]=sim.enemyUnits.get(i).id;
 			if(i%15==14)
 				j++;
 		}
@@ -62,3 +63,4 @@ public class Battlefield {
 		}
 	}
 }
+

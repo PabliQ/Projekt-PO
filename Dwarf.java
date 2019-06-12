@@ -65,10 +65,10 @@ public class Dwarf extends Unit {
 
 
     @Override
-    public boolean attack(Simulation sim, Battlefield field, int fieldSize) {
+    public void attack(Simulation sim, Battlefield field, int fieldSize, boolean done) {
         Point myLocation = field.getLocation(fieldSize, this.id);
         Point enemyLocation = new Point();
-        boolean done = false;
+        done = false;
         for (int tempX = -1; tempX <= 1; tempX++) {
             for (int tempY = -1; tempY <= 1; tempY++) {
                 if (tempX != 0 && tempY != 0 && myLocation.x + tempX >= 0 && myLocation.x + tempX < fieldSize && myLocation.y + tempY >= 0 && myLocation.y + tempY < fieldSize) {
@@ -113,7 +113,6 @@ public class Dwarf extends Unit {
             }
             if (done) break;
         }
-        return done;
     }
 }
 
